@@ -12,8 +12,8 @@ afterEach(async () => {
     it('should set the test env', () => {
       expect(process.env.DB_ENV).toBe('testing');
     });
+  });
 
-describe("the route handlers", () => {
   describe("get /games", () => {
     it("should hit endpoint and responds with 200", async () => {
         const response = await request(server).get("/games");
@@ -31,9 +31,14 @@ describe("the route handlers", () => {
     });
   });
 
-  // describe("post /games", () => {
 
-  // })
-});
+describe("post /games", () => {
+  it('responds with 201 when body has information', async (req, res) => {
+    const body = { title: 'The Elder Scrolls V: Skyrim', genre: 'Action RPG', releaseYear: 2011 };
 
+    const response = await request(server)
+      .post("/games")
+      .send(body);
+      expect(response.status).toBe(201)
+  });
 });
