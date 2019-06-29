@@ -33,12 +33,27 @@ afterEach(async () => {
 
 
 describe("post /games", () => {
-  it('responds with 201 when body has information', async (req, res) => {
+  it('responds with 201 when body has information', async () => {
     const body = { title: 'The Elder Scrolls V: Skyrim', genre: 'Action RPG', releaseYear: 2011 };
 
     const response = await request(server)
       .post("/games")
       .send(body);
       expect(response.status).toBe(201)
+  });
+
+  it("respods with 422 when title is missing", async () => {
+    const body = { title: '', genre: 'Action RPG', releaseYear: 2011 };
+    const response = await request(server)
+      .post("/games")
+      .send(body);
+    expect(response.status).toBe(422);
+  });
+  it("responds with 422 when genre is missing", async () => {
+    const body = { title: 'The Elder Scrolls V: Skyrim', releaseYear: 2011 };
+    const response = await request(server)
+      .post("/games")
+      .send(body);
+    expect(response.status).toBe(422);
   });
 });
