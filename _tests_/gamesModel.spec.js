@@ -1,6 +1,8 @@
 const games = require("../games/gamesModel.js");
 const db = require("../data/dbConfig.js");
 
+
+//afterEach
 beforeEach(async () => {
     await db("games").truncate();
   });
@@ -19,3 +21,5 @@ describe("the games model", () => {
         expect(ids[0]).toBe(1);
     });
 });
+
+//afterEach 

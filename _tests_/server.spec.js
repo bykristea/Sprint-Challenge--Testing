@@ -51,7 +51,7 @@ describe("post /games", () => {
   });
 
   it("responds with 422 when genre is missing", async () => {
-    const body = { title: 'The Elder Scrolls V: Skyrim', releaseYear: 2011 };
+    const body = { title: 'The Elder Scrolls V:Skyrim', releaseYear: 2011 };
     const response = await request(server)
       .post("/games")
       .send(body);

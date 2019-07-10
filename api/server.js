@@ -6,6 +6,7 @@ const server = express();
 
 server.use(express.json());
 
+// GET returns all games at endpoint /games
 server.get('/games', async (req, res) => {
     try {
         const rows = await games.fetch();
@@ -17,6 +18,8 @@ server.get('/games', async (req, res) => {
     }
 });
 
+// POST adds a new game at endpoint /games
+//must include title, genre and release year as req.body
 server.post("/games", async (req, res) => {
     try {
       const newGame = req.body;
@@ -35,7 +38,7 @@ server.post("/games", async (req, res) => {
             if (typeof newGame.releaseYear === "number") {
               res.status(201).json(response);
             } else {
-              // releaseYear NAN
+              // releaseYear NAN(not a number)
               res.status(422).json({ error: "releaseYear must be a number" });
             }
           } else {

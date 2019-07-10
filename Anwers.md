@@ -16,6 +16,6 @@ It is a good way to think through what your requirements and design should be be
 
 3. Mention three types of automated tests.
 
-Unit Testing
-API Testing
+Unit Testing/API Testing
+Integration Testing
 Regression Testing
